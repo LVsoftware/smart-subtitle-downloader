@@ -16,10 +16,10 @@ import org.jsoup.select.Elements;
 public class SubsceneProvider implements SubtitleProvider {
   private static final org.slf4j.Logger LOG =
       org.slf4j.LoggerFactory.getLogger(SubsceneProvider.class);
-  public static final String HEADER_USER_AGENT =
-      "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36";
-  public static final String HEADER_COOKIE =
-      "_ga=GA1.2.1416801158.1607222748; __gads=ID=74152d57847bc04e-22d29cdf2ec500ae:T=1607831185:RT=1607831185:S=ALNI_MZE06x4xCojGUlE-0rbrZ1RNi9LBw; __cfduid=dedd12ea6f7fdf58f170c0bda842f53bb1610289111; cf_clearance=f28db97fc6ba447d52cc32ccb50491aecd0c0f43-1610801978-0-150; _gid=GA1.2.650355659.1610801980; __cf_bm=ba484c735871e9ed1f0896b36f01481515f4d00e-1610808250-1800-AWBzn9wKzCCrq2c3EfamjG++150WlLhp7V9wyqKeBPmNi8eMbDLI3GpIsjuvMMKHU4+8FbYOSZYULXrJ8PVtSUAFzPk6buCvsoPnM/26QOWgAvbWkS+jqAgv0OoUCKPECw==";
+  public static final String HEADER_USER_AGENT = System.getProperty("req.header.agent",
+      "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36");
+  public static final String HEADER_COOKIE = System.getProperty("req.header.cookie",
+      "_ga=GA1.2.1416801158.1607222748; __gads=ID=74152d57847bc04e-22d29cdf2ec500ae:T=1607831185:RT=1607831185:S=ALNI_MZE06x4xCojGUlE-0rbrZ1RNi9LBw; __cfduid=dedd12ea6f7fdf58f170c0bda842f53bb1610289111; cf_clearance=f28db97fc6ba447d52cc32ccb50491aecd0c0f43-1610801978-0-150; _gid=GA1.2.650355659.1610801980; __cf_bm=ba484c735871e9ed1f0896b36f01481515f4d00e-1610808250-1800-AWBzn9wKzCCrq2c3EfamjG++150WlLhp7V9wyqKeBPmNi8eMbDLI3GpIsjuvMMKHU4+8FbYOSZYULXrJ8PVtSUAFzPk6buCvsoPnM/26QOWgAvbWkS+jqAgv0OoUCKPECw==");
   public static final int TIMEOUT_MS = 30_000;
 
   @Override
