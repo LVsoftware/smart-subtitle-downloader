@@ -1,9 +1,9 @@
 package io.github.vitalivu.subdownloader;
 
 import io.github.vitalivu.subdownloader.compressor.Compressor;
+import io.github.vitalivu.subdownloader.name.FileNameExtractor;
 import io.github.vitalivu.subdownloader.name.NameSetter;
 import io.github.vitalivu.subdownloader.provider.SubtitleProvider;
-import io.github.vitalivu.subdownloader.name.FileNameExtractor;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
@@ -12,10 +12,10 @@ public class DownloadClient {
   private static final org.slf4j.Logger LOG =
       org.slf4j.LoggerFactory.getLogger(DownloadClient.class);
 
-  private SubtitleProvider subtitleProvider;
-  private FileNameExtractor fileNameExtractor;
-  private Compressor compressor;
-  private NameSetter nameSetter;
+  private final SubtitleProvider subtitleProvider;
+  private final FileNameExtractor fileNameExtractor;
+  private final Compressor compressor;
+  private final NameSetter nameSetter;
 
   public DownloadClient(SubtitleProvider subtitleProvider, FileNameExtractor fileNameExtractor,
                         Compressor compressor, NameSetter nameSetter) {
@@ -44,7 +44,7 @@ public class DownloadClient {
     String title = fileNameExtractor.toTitle(videoFile);
     Integer year = fileNameExtractor.toYear(videoFile);
 
-    LOG.info("searching subtitle for {} (released {}?)", title, year);
+    LOG.info("searching {} subtitle for {} (released {}?)", language, title, year);
 
     Optional<File> compressedSubtitle = subtitleProvider.downloadSubtitle(title, language);
     if (!compressedSubtitle.isPresent()) {

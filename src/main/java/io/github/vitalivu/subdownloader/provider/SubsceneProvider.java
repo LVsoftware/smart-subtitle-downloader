@@ -32,9 +32,15 @@ public class SubsceneProvider implements SubtitleProvider {
 
     Elements select = searchPage.select("h2.exact");
     if (select == null || select.isEmpty()) {
-      LOG.info("cannot find subtitle by the exact name: {}", title);
-      return Optional.empty();
+      LOG.info("cannot find EXACT subtitle by the name: {}", title);
+
+      select = searchPage.select("h2.close");
+      if (select == null || select.isEmpty()) {
+        LOG.info("cannot find CLOSE subtitle by the name: {}", title);
+        return Optional.empty();
+      }
     }
+
     String linkDetail =
         searchPage.select("#left > div > div > ul:nth-child(2) > li > div.title > a")
             .attr("abs:href");
