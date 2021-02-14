@@ -9,7 +9,9 @@ public class SimpleFileNameExtractor implements FileNameExtractor {
   @Override
   public Integer toYear(String fileName) {
     if (Integer.getInteger("r.release_year", -1) != -1) {
-      return Integer.getInteger("r.release_year");
+      Integer integer = Integer.getInteger("r.release_year");
+      System.setProperty("r.release_year", null);
+      return integer;
     }
     String[] numbers = fileName.replaceAll("[^?0-9]+", " ").trim().split("\\s+");
     for (String number : numbers) {
