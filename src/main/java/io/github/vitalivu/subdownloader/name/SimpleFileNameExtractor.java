@@ -8,12 +8,14 @@ public class SimpleFileNameExtractor implements FileNameExtractor {
 
   @Override
   public Integer toYear(String fileName) {
-
+    if (Integer.getInteger("r.release_year", -1) != -1) {
+      return Integer.getInteger("r.release_year");
+    }
     String[] numbers = fileName.replaceAll("[^?0-9]+", " ").trim().split("\\s+");
     for (String number : numbers) {
       if (number.trim().length() > 0) {
         int y = Integer.parseInt(number);
-        if (y > 1960 && y <= Calendar.getInstance().get(Calendar.YEAR)) {
+        if (y > 1990 && y <= Calendar.getInstance().get(Calendar.YEAR)) {
           return y;
         }
       }

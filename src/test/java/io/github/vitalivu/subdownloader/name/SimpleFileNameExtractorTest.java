@@ -26,4 +26,12 @@ class SimpleFileNameExtractorTest {
     Assertions.assertEquals("Love And Monsters", extractor.toTitle(FILE_NAME),
         "toTitle not matches");
   }
+
+  @Test
+  void testToYear() {
+    SimpleFileNameExtractor extractor = new SimpleFileNameExtractor();
+    System.setProperty("r.release_year", "1960");
+    Assertions.assertEquals(1960, extractor.toYear("Spartacus (1960) [1080p] [YTS.AG]"),
+        "Set the year, but not matches");
+  }
 }

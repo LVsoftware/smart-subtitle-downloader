@@ -33,6 +33,8 @@ public class Main {
         .addOption("l", "language", true, "Language of subtitle to download, default: Vietnamese");
     options
         .addOption("c", "code", true, "Language code to append to name of subtitle, default: vie");
+    options
+        .addOption("ry", "release-year", true, "The release year");
     options.addOption("h", "help", false, "Print help");
 
     try {
@@ -55,6 +57,10 @@ public class Main {
       }
       String language = commandLine.getOptionValue("l", "Vietnamese");
       String languageCode = commandLine.getOptionValue("c", "vie");
+      if (commandLine.hasOption("ry")) {
+        LOG.info("set release year to {}", commandLine.getOptionValue("ry"));
+        System.setProperty("r.release_year", commandLine.getOptionValue("ry"));
+      }
 
       File path = new File(pathToScan);
 
